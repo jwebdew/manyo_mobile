@@ -76,10 +76,10 @@ header .inner nav {
     background-color: #fff;
     position: fixed;
     top: 0;
-    right: 0;
+    right: -520px;
     z-index: 99;
-    
-    display: none; /* 메뉴 숨김처리 */
+    transition: 1s;
+    /* display: none; */ /* 메뉴 숨김처리 */
     overflow:auto; /* 스크롤바 기능 */
 }
 /* 스크롤바 스타일 없애기 */

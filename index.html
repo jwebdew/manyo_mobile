@@ -7,9 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마녀공장 모바일</title>
     <link href="css/main.css" rel="stylesheet" />
+    <style>
+        #load {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            z-index: 99;
+            transition: 1s;
+        }
+        #load img {
+            width: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 
 <body class="wrap">
+    <div id="load">
+        <img src="img/logo.png" alt="" />
+    </div><!-- .load end -->
+
     <header>
         <div class="inner">
             <h1>
@@ -230,6 +254,13 @@
     </footer>
 
     <script>
+         setTimeout(function () {
+                let loadingPage = document.getElementById('load');
+                loadingPage.style.opacity = '0';
+                loadingPage.style.transform = 'scale(0)'
+            }, 3000);
+            //5초뒤에 실행
+
         //메뉴
         let bodyTag = document.getElementsByTagName('body')[0];
         let menuOpen = document.getElementsByClassName('menu_open')[0];
@@ -241,18 +272,20 @@
         
 
 
-        hdMenu.style.display = 'none';
+        //hdMenu.style.display = 'none';
+        hdMenu.style.right = '-520px';
 
         //메뉴 열고 닫기
         menuOpen.onclick = function () {
-            if (hdMenu.style.display == 'none') {
-                hdMenu.style.display = 'block'
+            if (hdMenu.style.right == '-520px') {
+                hdMenu.style.right = '0px';
+                
                 bodyTag.classList.add('bgcolor');
             }
         }
         menuClose.onclick = function () {
-            if (hdMenu.style.display == 'block') {
-                hdMenu.style.display = 'none';
+            if (hdMenu.style.right == '0px') {
+                hdMenu.style.right = '-520px';
                 bodyTag.classList.remove('bgcolor');
             }
         }
@@ -262,6 +295,8 @@
         //2차메뉴 모두 없애기
         
         //ul한테 클래스명 depth02를 가지고 있을 때
+        //메서드는 지정한 tagName의 HTML 요소를 만들어 반환
+        //메서드 : 프로그램이 실행될 때 동작이 이루어지는것
         let depth02Class =  document.createElement('ul').className = 'depth02';
         
         for (let i = 0; i < depth02.length; i++) {
@@ -283,12 +318,16 @@
                 //let depthchildClass = document.bodyTag.classList.contains('depth01');
               
                 if(depthchild.style.display == 'none'){
-                    depthchild.style.display = 'block'
-                } else (
-                    depthchild.style.display = 'none'
-                )
+                    depthchild.style.display = 'block';
+                    depth01[i].children[0].style.color = '#ff0000';
+                } else {
+                    depth01[i].children[0].style.color = '#333333';
+                    depthchild.style.display = 'none';
+                }
             }   
         }
+
+        
 
         //탭
 
